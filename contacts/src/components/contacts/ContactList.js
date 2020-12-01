@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { contactClick, setContacts } from "../../store/actions/contacts";
+import { setContacts } from "../../store/actions/contacts";
 import { Link } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 
-function ContactList({ list, contactClick, setContacts }) {
+function ContactList({ list, setContacts }) {
 	useEffect(() => {
 		setContacts();
 	}, []);
@@ -19,15 +19,7 @@ function ContactList({ list, contactClick, setContacts }) {
 				<List>
 					{list.map((item) => {
 						return (
-							<ListItem
-								button
-								component={Link}
-								to="/contactForm"
-								key={item.id}
-								onClick={() => {
-									contactClick(item.id);
-								}}
-							>
+							<ListItem button component={Link} to={`/contactForm/${item.id}`} key={item.id}>
 								{item.name} {item.surname}
 							</ListItem>
 						);
@@ -35,7 +27,7 @@ function ContactList({ list, contactClick, setContacts }) {
 				</List>
 			</Paper>
 			<Box mt={1}>
-				<Button variant="contained" component={Link} color="primary" to="/contactForm">
+				<Button variant="contained" component={Link} color="primary" to="/contactForm/new">
 					Create new contact
 				</Button>
 			</Box>
@@ -48,7 +40,6 @@ function mapStateToProps(state) {
 }
 
 let mapDispatchToProps = {
-	contactClick,
 	setContacts,
 };
 

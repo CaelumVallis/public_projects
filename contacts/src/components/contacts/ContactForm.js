@@ -1,8 +1,8 @@
 import React from "react";
 import { Form, Formik } from "formik";
 import { connect } from "react-redux";
-import { addContact, deleteContact, saveContact } from "../../store/actions/contacts";
-import { useHistory } from "react-router-dom";
+import { deleteContact, saveContact } from "../../store/actions/contacts";
+import { useHistory, useParams, withRouter } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import ListItem from "@material-ui/core/ListItem";
@@ -10,29 +10,20 @@ import List from "@material-ui/core/List";
 import MyInputField from "./MyInputField";
 import Button from "@material-ui/core/Button";
 
-function ContactForm({ currentContact, addContact, deleteContact, saveContact }) {
+function ContactForm({ currentContact, deleteContact, saveContact }) {
 	let history = useHistory();
+	let params = useParams();
 
 	function onDelete() {
-		deleteContact(currentContact.id);
-		history.push("/");
+		deleteContact(params.id).then(() => history.push("/"));
 	}
 
 	function onSubmit(newContact) {
-		if (newContact.id === null) {
-			addContact(newContact);
-		} else {
-			saveContact(newContact);
-		}
-		history.push("/");
+		saveContact(newContact).then(() => history.push("/"));
 	}
 
 	function validateText(value) {
 		let error;
-
-		if (currentContact.id !== null) {
-			console.log(value);
-		}
 
 		if (!value) {
 			error = "Required";
@@ -105,14 +96,21 @@ function ContactForm({ currentContact, addContact, deleteContact, saveContact })
 	);
 }
 
-function mapStateToProps(state) {
-	return state;
+function mapStateToProps(state, { match: { params } }) {
+	console.log(state, params);
+	let currentContact = state.list.find((item) => item.id === params.id);
+	currentContact = currentContact || {
+		id: null,
+		name: "",
+		surname: "",
+		phone: "",
+	};
+	return { currentContact };
 }
 
 let mapDispatchToProps = {
-	addContact,
 	deleteContact,
 	saveContact,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ContactForm));
