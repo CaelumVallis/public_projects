@@ -1,0 +1,37 @@
+.sticker {
+	position: fixed;
+	z-index: -1;
+	width: 200px;
+	padding: 10px;
+	border-radius: 2px;
+	border: 1px solid #fdd835;
+}
+
+.sticker-header {
+	display: flex;
+	justify-content: space-between;
+	height: 30px;
+}
+
+.sticker i {
+	cursor: pointer;
+	color: black;
+}
+
+.sticker-title {
+	overflow: hidden;
+	font-weight: bold;
+}
+
+.close-btn {
+	float: right;
+}
+
+.sticker-body {
+	font-style: italic;
+	padding: 5px;
+}
+
+.add-button {
+	color: #263238;
+}

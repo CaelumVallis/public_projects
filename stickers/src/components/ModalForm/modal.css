@@ -1,0 +1,46 @@
+.modal-form {
+	position: fixed;
+	left: calc(50% - 200px);
+	top: calc(50% - 100px);
+	z-index: 999;
+	width: 400px;
+	padding: 10px;
+	border-radius: 2px;
+}
+
+.modal-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-body {
+	border-radius: 2px;
+	background-color: white;
+	padding: 10px;
+}
+
+.modal-header {
+	height: 30px;
+}
+
+.modal i {
+	cursor: pointer;
+	color: black;
+}
+
+.close-btn {
+	float: right;
+	cursor: pointer;
+}
+
+.modal-body {
+	height: 150px;
+}
+
+.hidden {
+	display: none;
+}

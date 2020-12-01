@@ -1,0 +1,25 @@
+.todo-item {
+	padding: 3px 10px;
+	font: 300 14px "Montserrat";
+	margin-top: 10px;
+	word-wrap: break-word;
+	background-color: rgba(240, 195, 95, 0.8);
+	transition: 100ms;
+	user-select: none;
+	color: #fff;
+	transition: 100ms;
+}
+
+.todo-item.done {
+	background-color: rgba(0, 110, 5, 0.8);
+}
+
+.todo-item .delete-btn {
+	float: right;
+	cursor: pointer;
+	transition: 100ms;
+
+	&:hover {
+		color: rgb(195, 20, 50);
+	}
+}
