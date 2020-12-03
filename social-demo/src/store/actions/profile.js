@@ -1,4 +1,3 @@
-import api from "../../api/profile.js";
 import firebase from "firebase/app";
 
 export let auth = (values, path) => () => {
